@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <script>
+        let width = prompt("hvad er bredden?");
+        let length = prompt("hvad er længden?");
+        let notWidth = isNaN(width);
+        let notLength = isNaN(length);
+
+        if (notWidth == true) {
+            alert("skriv tal din idiot");
+        } else if (notLength == true) {
+            alert("skriv tal din idiot");
+        } else {
+            alert(`længde=${length}` + ` bredde=${width}` + ` areal=${areal(width, length)}`);
+        }
+
+        function areal(width, length) {
+            return (width * length);
+        }
+
+
+
+
+        if (confirm("vil du prøve igen?")) {
+            location.reload();
+        }
+    </script>
+</body>
+
+</html>
