@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style>
+        div {
+            height: 100px;
+            width: 100px;
+            line-height: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="green" style="background-color: green"></div>
+    <div id="red" style="background-color: red; border-radius: 50%"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+        console.log("start load");
+        let firkant = document.querySelector("#green");
+        let cirkel = document.querySelector("#red");
+
+        function start() {
+            console.log("loaded");
+
+            firkant.removeEventListener("click", start);
+            firkant.innerHTML = `  <img src="http://helf-kea.dk/test/frog.png">  `;
+            cirkel.innerHTML = `<img src=" http://helf-kea.dk/test/gris.png">`;
+
+            firkant.addEventListener("click", byt);
+            cirkel.addEventListener("click", stop);
+        }
+
+        function byt() {
+            console.log("byt");
+            firkant.removeEventListener("click", byt);
+            cirkel.innerHTML = `  <img src="http://helf-kea.dk/test/frog.png">  `;
+            firkant.innerHTML = `<img src=" http://helf-kea.dk/test/gris.png">`;
+
+            firkant.addEventListener("click", start);
+            cirkel.addEventListener("click", stop);
+
+        }
+
+        function stop() {
+            console.log("stop");
+            firkant.removeEventListener("click", byt);
+            firkant.removeEventListener("click", start);
+        }
+    </script>
+
+
+</body>
+</html>
