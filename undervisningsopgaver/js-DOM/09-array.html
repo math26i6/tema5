@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>js-oevelse-1</title>
+    <style>
+        body {
+            color: burlywood;
+        }
+
+        #display {
+            width: 20vw;
+            height: 20vw;
+            border: 1px solid silver;
+            margin: 7vw;
+            padding: 1vw;
+        }
+
+        /*********************/
+    </style>
+
+</head>
+
+<body>
+    <div id="display"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+        let display = document.querySelector("#display");
+        let playlist = ["Further Away", "Sunflower", "Alone", "Big City Life", "Sweet Home Alabama", "Land down under", "Levels", "Who Says", "When I'm Gone"];
+
+        function start() {
+            console.log("start");
+            playlist.forEach(song => {
+                display.innerHTML += song + "<br>";
+            })
+        }
+    </script>
+</body>
+
+</html>
