@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+
+
+    <style>
+        div {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="gris"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        let dyr = [{
+                "navn": "gris",
+                "type": "pattedyr",
+                "billede": "http://helf-kea.dk/test/gris.png",
+                "levested": "svinefarm"
+            },
+            {
+                "navn": "frø",
+                "type": "amfibie",
+                "billede": "http://helf-kea.dk/test/frø.png",
+                "levested": "sump"
+            }, {
+                "navn": "ræv",
+                "type": "pattedyr",
+                "billede": "http://helf-kea.dk/test/fox.png",
+                "levested": "skov"
+            },
+            {
+                "navn": "sild",
+                "type": "fisk",
+                "billede": "http://helf-kea.dk/test/sild.jpg",
+                "levested": "hav"
+            }, {
+                "navn": "krokodille",
+                "type": "krybdyr",
+                "billede": "http://helf-kea.dk/test/kroko.jpg",
+                "levested": "sump"
+            }
+
+
+
+
+
+        ];
+
+        function start() {
+            console.log("start");
+
+            let alle = document.querySelector("#gris");
+            console.log(dyr);
+
+
+            dyr.forEach(hvilket => {
+                alle.innerHTML +=
+                    `<div>
+                        <h3>${hvilket.navn}</h3>
+                        <img src=${hvilket.billede} <br>
+                        <p> type: ${hvilket.type}, <br> levested:  ${hvilket.levested}</p>
+                    </div>`
+
+            });
+
+        }
+    </script>
+</body>
+
+</html>
