@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+
+
+    <style>
+        #personListe {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+
+        }
+
+        div {
+            text-align: center;
+            border: 2px solid black;
+            background-color: gray;
+        }
+
+        img {
+            width: 15vw;
+            height: 15vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="personListe"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        let persons = [];
+
+
+        function start() {
+            console.log("start");
+            let alle = document.querySelector("#personListe");
+            async function getPersons() {
+                let personData = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1OLlD_GRoz71piHvnW306omRAyHS7vtLOILQt-K0YF_c");
+                persons = await personData.json();
+                showPersons();
+            }
+
+            console.log(persons);
+
+            function showPersons() {
+
+                persons.forEach(hvilket => {
+                    alle.innerHTML +=
+                        `<div>
+                        <h2>${hvilket.navn}</h3>
+                        <img src=${hvilket.billede}> <br>
+                        <a href="https://github.com/${hvilket.github}/tema5">Github</a>
+                    </div>`
+
+                });
+
+            }
+            getPersons();
+        }
+    </script>
+</body>
+
+</html>
