@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+
+
+    <style>
+        div {
+
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="gris"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        let dyr = [];
+
+
+        function start() {
+            console.log("start");
+            let alle = document.querySelector("#gris");
+            async function getDyr() {
+                let dyrData = await fetch("dyr.json");
+                dyr = await dyrData.json();
+                showAnimals();
+            }
+
+            console.log(dyr);
+
+            function showAnimals() {
+
+                dyr.forEach(hvilket => {
+                    alle.innerHTML +=
+                        `<div>
+                        <h3>${hvilket.navn}</h3>
+                        <img src=${hvilket.billede} <br>
+                        <p> type: ${hvilket.type}, <br> levested:  ${hvilket.levested}</p>
+                    </div>`
+
+                });
+
+            }
+            getDyr();
+        }
+    </script>
+</body>
+
+</html>
