@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <script>
+        let height = prompt("din højde i cm");
+        let weight = prompt("din vægt");
+        let bmi = weight / (height * height);
+
+        let notHeight = isNaN(height);
+        let notWidth = isNaN(weight);
+
+        if (notHeight == true) {
+            alert("skriv tal din idiot");
+            location.reload();
+        } else if (notWidth == true) {
+            alert("skriv tal din idiot");
+
+        } else {
+            alert(`din bmi er=${bmi}`);
+        }
+
+        if (confirm(bmi < 19)) {
+            alert("bmi'en er " + bmi, "fedmeklasse: undervægtig");
+        } else if (bmi > 20 && bmi < 25) {
+            alert("bmi'en er " + bmi, "fedmeklasse: normal");
+        } else if (bmi > 25 && bmi < 30) {
+            alert("bmi'en er " + bmi, "fedmeklasse: Overvægtig");
+        } else if (bmi > 30 && bmi < 35) {
+            alert("bmi'en er " + bmi, "fedmeklasse: Fed");
+        } else if (bmi > 35 && bmi < 40) {
+            alert("bmi'en er " + bmi, "fedmeklasse: Svær fedme");
+        } else if (bmi >= 40) {
+            alert("bmi'en er " + bmi, "fedmeklasse: Ekstremt fed");
+        }
+    </script>
+</body>
+
+</html>
