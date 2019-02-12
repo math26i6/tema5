@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="style">
+
+
+    <style>
+        #personListe {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+
+        }
+
+        section {
+            text-align: center;
+            border: 2px solid blue;
+            background-color: rgba(255, 165, 0, 0.44);
+        }
+
+        img {
+            width: 15vw;
+            height: 15vw;
+        }
+
+        h2 {
+            font-family: luckiest guy;
+            color: blue;
+        }
+
+        a {
+            font-family: sans-serif;
+            font-size: 2rem;
+            color: blue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: red;
+        }
+
+        .valgt {
+            background-color: red;
+            color: white;
+        }
+
+        button {
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        nav {
+            text-align: center;
+        }
+
+        #popup {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            left: 0;
+            position: fixed;
+            background-color: red;
+        }
+
+        #luk {
+            text-align: right;
+            padding: 1rem;
+        }
+
+        #indhold {
+            margin: auto;
+            width: 80vw;
+            height: 40vw;
+
+            background-color: blue;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="popup">
+        <div id="luk"><button>Close</button></div>
+        <div id="indhold"></div>
+
+    </div>
+    <nav class="menu">
+        <h1></h1>
+        <button class="filter" data-hold="alle">Alle</button>
+        <button class="filter" data-hold="a">Hold A</button>
+        <button class="filter" data-hold="b">Hold B</button>
+
+    </nav>
+    <section id="personListe"></section>
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        let persons = [];
+        let filter = "alle";
+
+
+        function start() {
+            console.log("start");
+            let alle = document.querySelector("#personListe");
+            async function getPersons() {
+                let personData = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1OLlD_GRoz71piHvnW306omRAyHS7vtLOILQt-K0YF_c");
+                persons = await personData.json();
+                persons.sort((a, b) => {
+                    return a.navn.localeCompare(b.navn);
+                });
+                showPersons();
+            }
+
+            console.log(persons);
+
+            function showPersons() {
+                alle.innerHTML = "";
+                persons.forEach(hvilket => {
+
+                    if (filter == "alle" || filter == hvilket.hold) {
+
+                        let template =
+                            `<section>
+                        <h2>${hvilket.navn}</h3>
+                        <img src=${hvilket.billede}> <br>
+                        <a href="https://github.com/${hvilket.github}/tema5">Github:</a>
+                        <p> Alder: ${hvilket.alder}</p>
+                    </section>`;
+                        alle.insertAdjacentHTML("beforeend", template);
+                        alle.lastElementChild.addEventListener("click", open);
+
+                        function open() {
+                            document.querySelector("#indhold").innerHTML =
+                                `<section>
+                        <h2>${hvilket.navn}</h3>
+                        <img src=${hvilket.billede}> <br>
+
+                        <p> Hold: ${hvilket.hold}</p>
+                        <p> Alder: ${hvilket.alder}</p>
+
+                    </section>`;
+
+                            document.querySelector("#popup").style.display = "block";
+                        }
+
+                    }
+                });
+            }
+
+            document.querySelector("#luk button").addEventListener("click", () => {
+                document.querySelector("#popup").style.display = "none";
+            });
+
+
+
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.classList.remove("valgt");
+                elm.addEventListener("click", filtering);
+
+            })
+
+            function filtering() {
+                document.querySelectorAll(".filter").forEach(farve => {
+                    farve.classList.remove("valgt");
+
+                });
+                filter = this.getAttribute("data-hold");
+                this.classList.add("valgt");
+                document.querySelector("h1").textContent = this.textContent;
+                showPersons();
+            }
+            getPersons();
+        }
+    </script>
+</body>
+
+</html>
