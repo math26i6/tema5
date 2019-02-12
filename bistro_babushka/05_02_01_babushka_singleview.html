@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistro Babushka</title>
+    <link rel="stylesheet" href="">
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="style">
+
+
+    <style>
+        body {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        #menu {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+
+        }
+
+        section {
+            text-align: center;
+            border: 2px solid blue;
+            background-color: rgba(255, 165, 0, 0.44);
+        }
+
+        img {
+            width: 15vw;
+            height: 15vw;
+        }
+
+        #popup {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            left: 0;
+            position: fixed;
+            background-color: red;
+        }
+
+        h2 {
+            font-family: luckiest guy;
+            color: blue;
+        }
+
+        a {
+            font-family: sans-serif;
+            font-size: 2rem;
+            color: blue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: red;
+        }
+
+        .valgt {
+            background-color: red;
+            color: white;
+        }
+
+        button {
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        nav {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="popup">
+        <div id="luk"><button>Close</button></div>
+        <div id="indhold"></div>
+
+    </div>
+    <nav>
+        <h1></h1>
+        <button class="filter" data-kategori="alle">Alle Retter</button>
+        <button class="filter" data-kategori="forretter">Forret</button>
+        <button class="filter" data-kategori="hovedretter">Hovedret</button>
+        <button class="filter" data-kategori="desserter">Desserter</button>
+        <button class="filter" data-kategori="sideorders">Sideorders</button>
+        <button class="filter" data-kategori="drikkevarer">Drikkevarer</button>
+
+    </nav>
+
+    <section id="menu"></section>
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        let retter = [];
+        let filter = "alle";
+
+
+        function start() {
+
+
+            console.log("start");
+            let retter = document.querySelector("#menu");
+            async function getRetter() {
+                let babushka = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1jxxxFoWBuMJ1qhQ9BQIAyKHmP38XtAF9_sQr0xo5JLo");
+                mad = await babushka.json();
+                mad.sort((a, b) => {
+                    return a.navn.localeCompare(b.navn);
+                });
+                showMenu();
+            }
+
+            console.log(retter);
+
+            function showMenu() {
+                retter.innerHTML = "";
+                mad.forEach(hvilket => {
+                    if (filter == "alle" || filter == hvilket.kategori) {
+                        let template =
+                            `<section>
+                        <h2>${hvilket.navn}</h2>
+
+                        <img src="imgs/small/${hvilket.billede}-sm.jpg"> <br>
+                        <h4> ${hvilket.kort}</h4>
+                        <p> Pris: ${hvilket.pris},-</p>
+                    </section>`;
+
+                        retter.insertAdjacentHTML("beforeend", template);
+                        retter.lastElementChild.addEventListener("click", () => {
+                            location.href = "singleview.html?id=" + hvilket.id;
+                        });
+
+
+                        function open() {
+                            document.querySelector("#indhold").innerHTML =
+                                `<section>
+                        <h2>${hvilket.navn}</h2>
+
+                        <img src="imgs/small/${hvilket.billede}-sm.jpg"> <br>
+                        <h4> ${hvilket.kort}</h4>
+                        <p> Pris: ${hvilket.pris},-</p>
+                    </section>`;
+
+                            document.querySelector("#popup").style.display = "block";
+                        }
+
+                    }
+
+                });
+            }
+
+            document.querySelector("#luk button").addEventListener("click", () => {
+                document.querySelector("#popup").style.display = "none";
+            });
+
+
+
+
+
+
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.classList.remove("valgt");
+                elm.addEventListener("click", filtering);
+
+            })
+
+            function filtering() {
+                document.querySelectorAll(".filter").forEach(farve => {
+                    farve.classList.remove("valgt");
+
+                });
+                filter = this.getAttribute("data-kategori");
+                this.classList.add("valgt");
+                document.querySelector("h1").textContent = this.textContent;
+                showMenu();
+            }
+            getRetter();
+
+        }
+    </script>
+</body>
+
+</html>
