@@ -37,30 +37,67 @@
         }
 
         img {
-            width: 15vw;
+            width: 20vw;
             height: 15vw;
         }
 
         #popup {
             display: none;
+            max-width: 1200px;
             width: 100vw;
             height: 100vh;
-            left: 0;
             position: fixed;
-            background-color: red;
+
+        }
+
+        #se {
+            font-size: 1.5rem;
+            font-family: sans-serif;
+            font-style: oblique;
+        }
+
+        #se:hover {
+            color: black;
+            cursor: pointer;
+        }
+
+        #indhold {
+            text-align: center;
+            border: 2px solid rgb(255, 255, 255);
+            background-color: rgb(144, 144, 144);
+            margin: 1rem;
+            max-width: 1200px;
+            height: 45%;
+        }
+
+        article {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+
+        h1 {
+            font-family: impact;
+            font-size: 4rem;
+            color: white;
+            text-align: center;
         }
 
         h2 {
-            font-family: luckiest guy;
+            font-family: impact;
+            font-size: 1.5rem;
             color: white;
         }
 
         h4 {
+            font-family: sans-serif;
             color: white;
             padding: 1rem;
         }
 
+        #tekst h4 {}
+
         p {
+            font-family: sans-serif;
             color: white;
         }
 
@@ -71,23 +108,34 @@
             text-decoration: none;
         }
 
-        a:hover {
-            text-decoration: underline;
-            color: red;
-        }
-
         .valgt {
-            background-color: red;
-            color: white;
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            box-shadow: 20px;
         }
 
         button {
             font-size: 2rem;
             text-align: center;
+            background-color: rgb(87, 87, 87);
+            color: white;
+            font-family: impact;
+            border: 2px solid white;
+            margin: 1rem;
+            padding: 0.5rem;
+            cursor: pointer;
+
         }
 
         nav {
             text-align: center;
+        }
+
+        #top {
+            text-align: center;
+            font-style: italic;
+            font-size: 5rem;
         }
     </style>
 </head>
@@ -98,11 +146,14 @@
         <div id="indhold"></div>
 
     </div>
+    <h1 id="top">BISTRO BABUSHKA</h1>
+
+
     <nav>
-        <h1></h1>
+        <h1 id="h1_menu">Menu</h1>
         <button class="filter" data-kategori="alle">Alle Retter</button>
-        <button class="filter" data-kategori="forretter">Forret</button>
-        <button class="filter" data-kategori="hovedretter">Hovedret</button>
+        <button class="filter" data-kategori="forretter">Forretter</button>
+        <button class="filter" data-kategori="hovedretter">Hovedretter</button>
         <button class="filter" data-kategori="desserter">Desserter</button>
         <button class="filter" data-kategori="sideorders">Sideorders</button>
         <button class="filter" data-kategori="drikkevarer">Drikkevarer</button>
@@ -141,7 +192,10 @@
 
                         <img src="imgs/small/${hvilket.billede}-sm.jpg"> <br>
                         <h4> ${hvilket.kort}</h4>
-                        <p> Pris: ${hvilket.pris},-</p>
+
+                        <p>Pris: ${hvilket.pris},-</p>
+
+<p id="se">Se mere</p>
                     </section>`;
                         retter.insertAdjacentHTML("beforeend", template);
                         retter.lastElementChild.addEventListener("click", open);
@@ -149,13 +203,24 @@
 
                         function open() {
                             document.querySelector("#indhold").innerHTML =
-                                `<section>
-                        <h2>${hvilket.navn}</h2>
 
-                        <img src="imgs/small/${hvilket.billede}-sm.jpg"> <br>
+
+                                `  <h2>${hvilket.navn}</h2>
+                            <article>
+
+                            <div id="billede">
+                        <img src="imgs/small/${hvilket.billede}-sm.jpg">
+                            </div>
+
+                            <div id="tekst">
                         <h4> ${hvilket.kort}</h4>
+ <p>Oprindelse: ${hvilket.oprindelse}</p>
+                        <p> ${hvilket.lang}</p>
+
                         <p> Pris: ${hvilket.pris},-</p>
-                    </section>`;
+                            </div>
+
+                    </article>`;
 
                             document.querySelector("#popup").style.display = "block";
                         }
@@ -187,7 +252,7 @@
                 });
                 filter = this.getAttribute("data-kategori");
                 this.classList.add("valgt");
-                document.querySelector("h1").textContent = this.textContent;
+                document.querySelector("#h1_menu").textContent = this.textContent;
                 showMenu();
             }
             getRetter();
