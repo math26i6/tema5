@@ -147,11 +147,13 @@
 
     </div>
     <h1 id="top">BISTRO BABUSHKA</h1>
+
+
     <nav>
         <h1 id="h1_menu">Menu</h1>
         <button class="filter" data-kategori="alle">Alle Retter</button>
-        <button class="filter" data-kategori="forretter">Forret</button>
-        <button class="filter" data-kategori="hovedretter">Hovedret</button>
+        <button class="filter" data-kategori="forretter">Forretter</button>
+        <button class="filter" data-kategori="hovedretter">Hovedretter</button>
         <button class="filter" data-kategori="desserter">Desserter</button>
         <button class="filter" data-kategori="sideorders">Sideorders</button>
         <button class="filter" data-kategori="drikkevarer">Drikkevarer</button>
@@ -167,8 +169,6 @@
 
 
         function start() {
-
-
             console.log("start");
             let retter = document.querySelector("#menu");
             async function getRetter() {
@@ -192,25 +192,35 @@
 
                         <img src="imgs/small/${hvilket.billede}-sm.jpg"> <br>
                         <h4> ${hvilket.kort}</h4>
-                        <p> Pris: ${hvilket.pris},-</p>
+
+                        <p>Pris: ${hvilket.pris},-</p>
+
 <p id="se">Se mere</p>
                     </section>`;
-
                         retter.insertAdjacentHTML("beforeend", template);
-                        retter.lastElementChild.addEventListener("click", () => {
-                            location.href = "singleview.html?id=" + hvilket.id;
-                        });
+                        retter.lastElementChild.addEventListener("click", open);
 
 
                         function open() {
                             document.querySelector("#indhold").innerHTML =
-                                `<section>
-                        <h2>${hvilket.navn}</h2>
 
-                        <img src="imgs/small/${hvilket.billede}-sm.jpg"> <br>
+
+                                `  <h2>${hvilket.navn}</h2>
+                            <article>
+
+                            <div id="billede">
+                        <img src="imgs/small/${hvilket.billede}-sm.jpg">
+                            </div>
+
+                            <div id="tekst">
                         <h4> ${hvilket.kort}</h4>
+ <p>Oprindelse: ${hvilket.oprindelse}</p>
+                        <p> ${hvilket.lang}</p>
+
                         <p> Pris: ${hvilket.pris},-</p>
-                    </section>`;
+                            </div>
+
+                    </article>`;
 
                             document.querySelector("#popup").style.display = "block";
                         }

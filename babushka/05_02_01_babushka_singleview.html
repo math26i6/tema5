@@ -13,6 +13,7 @@
         body {
             max-width: 1200px;
             margin: auto;
+            background-image: url("https://s3.amazonaws.com/liftclient-offloading/rebelpig/wp-content/uploads/2018/01/07001139/dark-wood-texture.jpg");
         }
 
         #menu {
@@ -23,27 +24,81 @@
 
         section {
             text-align: center;
-            border: 2px solid blue;
-            background-color: rgba(255, 165, 0, 0.44);
+            border: 2px solid white;
+            background-color: rgba(201, 201, 201, 0.38);
+            margin: 1rem
+        }
+
+        #menu {
+            text-align: center;
+            border: none;
+            background-color: rgba(0, 0, 0, 0);
+            margin: 1rem
         }
 
         img {
-            width: 15vw;
+            width: 20vw;
             height: 15vw;
         }
 
         #popup {
             display: none;
+            max-width: 1200px;
             width: 100vw;
             height: 100vh;
-            left: 0;
             position: fixed;
-            background-color: red;
+
+        }
+
+        #se {
+            font-size: 1.5rem;
+            font-family: sans-serif;
+            font-style: oblique;
+        }
+
+        #se:hover {
+            color: black;
+            cursor: pointer;
+        }
+
+        #indhold {
+            text-align: center;
+            border: 2px solid rgb(255, 255, 255);
+            background-color: rgb(144, 144, 144);
+            margin: 1rem;
+            max-width: 1200px;
+            height: 45%;
+        }
+
+        article {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+
+        h1 {
+            font-family: impact;
+            font-size: 4rem;
+            color: white;
+            text-align: center;
         }
 
         h2 {
-            font-family: luckiest guy;
-            color: blue;
+            font-family: impact;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        h4 {
+            font-family: sans-serif;
+            color: white;
+            padding: 1rem;
+        }
+
+        #tekst h4 {}
+
+        p {
+            font-family: sans-serif;
+            color: white;
         }
 
         a {
@@ -53,25 +108,35 @@
             text-decoration: none;
         }
 
-        a:hover {
-            text-decoration: underline;
-            color: red;
-        }
-
         .valgt {
-            background-color: red;
-            color: white;
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            box-shadow: 20px;
         }
 
         button {
             font-size: 2rem;
             text-align: center;
+            background-color: rgb(87, 87, 87);
+            color: white;
+            font-family: impact;
+            border: 2px solid white;
+            margin: 1rem;
+            padding: 0.5rem;
+            cursor: pointer;
+
         }
 
         nav {
             text-align: center;
         }
 
+        #top {
+            text-align: center;
+            font-style: italic;
+            font-size: 5rem;
+        }
     </style>
 </head>
 
@@ -81,8 +146,9 @@
         <div id="indhold"></div>
 
     </div>
+    <h1 id="top">BISTRO BABUSHKA</h1>
     <nav>
-        <h1></h1>
+        <h1 id="h1_menu">Menu</h1>
         <button class="filter" data-kategori="alle">Alle Retter</button>
         <button class="filter" data-kategori="forretter">Forret</button>
         <button class="filter" data-kategori="hovedretter">Hovedret</button>
@@ -101,6 +167,8 @@
 
 
         function start() {
+
+
             console.log("start");
             let retter = document.querySelector("#menu");
             async function getRetter() {
@@ -125,9 +193,13 @@
                         <img src="imgs/small/${hvilket.billede}-sm.jpg"> <br>
                         <h4> ${hvilket.kort}</h4>
                         <p> Pris: ${hvilket.pris},-</p>
+<p id="se">Se mere</p>
                     </section>`;
+
                         retter.insertAdjacentHTML("beforeend", template);
-                        retter.lastElementChild.addEventListener("click", open);
+                        retter.lastElementChild.addEventListener("click", () => {
+                            location.href = "singleview.html?id=" + hvilket.id;
+                        });
 
 
                         function open() {
@@ -170,13 +242,12 @@
                 });
                 filter = this.getAttribute("data-kategori");
                 this.classList.add("valgt");
-                document.querySelector("h1").textContent = this.textContent;
+                document.querySelector("#h1_menu").textContent = this.textContent;
                 showMenu();
             }
             getRetter();
 
         }
-
     </script>
 </body>
 

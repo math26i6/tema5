@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bistro Babushka</title>
+    <title></title>
     <link rel="stylesheet" href="">
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="style">
 
@@ -24,8 +24,6 @@
 
         section {
             text-align: center;
-            border: 2px solid white;
-            background-color: rgba(201, 201, 201, 0.38);
             margin: 1rem
         }
 
@@ -137,117 +135,84 @@
             font-style: italic;
             font-size: 5rem;
         }
+
     </style>
+
 </head>
 
 <body>
-    <div id="popup">
+    <div id="singleview">
         <div id="luk"><button>Close</button></div>
         <div id="indhold"></div>
 
     </div>
-    <h1 id="top">BISTRO BABUSHKA</h1>
-    <nav>
-        <h1 id="h1_menu">Menu</h1>
-        <button class="filter" data-kategori="alle">Alle Retter</button>
-        <button class="filter" data-kategori="forretter">Forret</button>
-        <button class="filter" data-kategori="hovedretter">Hovedret</button>
-        <button class="filter" data-kategori="desserter">Desserter</button>
-        <button class="filter" data-kategori="sideorders">Sideorders</button>
-        <button class="filter" data-kategori="drikkevarer">Drikkevarer</button>
 
-    </nav>
-
-    <section id="menu"></section>
     <script>
+        let urlParams = new URLSearchParams(window.location.search)
+        let id = urlParams.get("id");
+        console.log(id);
+        let mad;
         document.addEventListener("DOMContentLoaded", start);
 
-        let retter = [];
-        let filter = "alle";
 
 
         function start() {
-
-
             console.log("start");
-            let retter = document.querySelector("#menu");
+            let retter = [];
+            let filter = "alle";
+
             async function getRetter() {
                 let babushka = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1jxxxFoWBuMJ1qhQ9BQIAyKHmP38XtAF9_sQr0xo5JLo");
-                mad = await babushka.json();
-                mad.sort((a, b) => {
-                    return a.navn.localeCompare(b.navn);
-                });
-                showMenu();
-            }
-
-            console.log(retter);
-
-            function showMenu() {
-                retter.innerHTML = "";
-                mad.forEach(hvilket => {
-                    if (filter == "alle" || filter == hvilket.kategori) {
-                        let template =
-                            `<section>
-                        <h2>${hvilket.navn}</h2>
-
-                        <img src="imgs/small/${hvilket.billede}-sm.jpg"> <br>
-                        <h4> ${hvilket.kort}</h4>
-                        <p> Pris: ${hvilket.pris},-</p>
-<p id="se">Se mere</p>
-                    </section>`;
-
-                        retter.insertAdjacentHTML("beforeend", template);
-                        retter.lastElementChild.addEventListener("click", () => {
-                            location.href = "singleview.html?id=" + hvilket.id;
-                        });
+                retter = await babushka.json();
 
 
-                        function open() {
-                            document.querySelector("#indhold").innerHTML =
-                                `<section>
-                        <h2>${hvilket.navn}</h2>
-
-                        <img src="imgs/small/${hvilket.billede}-sm.jpg"> <br>
-                        <h4> ${hvilket.kort}</h4>
-                        <p> Pris: ${hvilket.pris},-</p>
-                    </section>`;
-
-                            document.querySelector("#popup").style.display = "block";
-                        }
-
+                retter.forEach(obj => {
+                    if (obj.id == id) {
+                        mad = obj;
                     }
-
                 });
+                console.log(mad);
+                open();
             }
 
-            document.querySelector("#luk button").addEventListener("click", () => {
-                document.querySelector("#popup").style.display = "none";
-            });
 
 
 
 
+            function open() {
+                document.querySelector("#indhold").innerHTML =
+                    `<section>
+
+                                <h2>${mad.navn}</h2>
+                            <article>
+
+                            <div id="billede">
+                        <img src="imgs/small/${mad.billede}-sm.jpg">
+                            </div>
+
+                            <div id="tekst">
+                        <h4> ${mad.kort}</h4>
+ <p>Oprindelse: ${mad.oprindelse}</p>
+                        <p> ${mad.lang}</p>
+
+                        <p> Pris: ${mad.pris},-</p>
+                            </div>
+
+                    </article>
+                </section>`;
+
+                document.querySelector("#singleview").style.display = "block";
 
 
-            document.querySelectorAll(".filter").forEach(elm => {
-                elm.classList.remove("valgt");
-                elm.addEventListener("click", filtering);
-
-            })
-
-            function filtering() {
-                document.querySelectorAll(".filter").forEach(farve => {
-                    farve.classList.remove("valgt");
-
-                });
-                filter = this.getAttribute("data-kategori");
-                this.classList.add("valgt");
-                document.querySelector("#h1_menu").textContent = this.textContent;
-                showMenu();
+                document.querySelector("#luk button").addEventListener("click", () => {
+                    location.href = "05_02_01_babushka_singleview.html";
+                })
             }
+
+
             getRetter();
-
         }
+
     </script>
 </body>
 
