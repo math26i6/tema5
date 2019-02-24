@@ -41,6 +41,7 @@
         #popup {
             display: none;
             margin: auto;
+            width: 100vw;
             height: 100vh;
             position: fixed;
 
@@ -67,7 +68,11 @@
             height: 45%;
         }
 
-        h1 {}
+        #forretter h1 {
+            font-family: Marcellus SC;
+            font-size: 2rem;
+            text-align: left
+        }
 
         article {
             display: grid;
@@ -163,6 +168,28 @@
             font-family: Marcellus SC;
         }
 
+        #hovedretter {
+            width: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+
+
+        #forretter div {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+        }
+
+        #desserter div {
+            width: auto;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+        }
+
+        #h1_menu {
+            font-family: Marcellus SC;
+        }
     </style>
 </head>
 
@@ -190,12 +217,17 @@
 
     <h1 id="h1_menu">Alle Retter
     </h1>
-    <h1 class="undermenu">Forret</h1>
     <section id="menu">
+        <div id="forret">
+        </div>
+        <div id="hovedretter">
+            <div id="pizza"></div>
+            <div id="pasta"></div>
+        </div>
+        <div id="dessert"></div>
     </section>
     <script>
         document.addEventListener("DOMContentLoaded", start);
-
         let retter = [];
         let filter = "alle";
 
@@ -214,24 +246,71 @@
 
             console.log(retter);
 
+
+
             function showMenu() {
                 retter.innerHTML = "";
+                var forret = document.createElement("div")
+                var hovedret = document.createElement("div")
+                var dessert = document.createElement("div")
+                var pasta = document.createElement("div")
+                var pizza = document.createElement("div")
+                let menu = document.querySelector("#menu")
+                menu.appendChild(forret)
+                menu.appendChild(hovedret)
+                menu.appendChild(dessert)
+
+
+                if (filter === "alle") {
+                    let hovedretId = document.createAttribute("id")
+                    hovedretId.value = "hovedretter"
+                    hovedret.setAttributeNode(hovedretId);
+
+                    let forretId = document.createAttribute("id")
+                    forretId.value = "forretter"
+                    forret.setAttributeNode(forretId);
+
+
+                    let dessertId = document.createAttribute("id")
+                    dessertId.value = "desserter"
+                    dessert.setAttributeNode(dessertId);
+
+                    let overskrift = document.createElement("h1");
+                    overskrift.innerHTML = 'Forretter'
+                    forret.appendChild(overskrift);
+
+                    let overskriftD = document.createElement("h1");
+                    overskriftD.innerHTML = 'Desserter'
+                    dessert.appendChild(overskriftD);
+                }
+                if (filter === "alle" || filter === "hovedret") {
+                    var overskriftH = document.createElement("h1");
+                    overskriftH.innerHTML = 'Hovedretter'
+                    hovedret.appendChild(overskriftH);
+
+                    overskriftH.appendChild(pasta)
+                    var pastaOverskrift = document.createElement("h1");
+                    let pastaHeader = document.createAttribute("id")
+                    pastaHeader.value = "pastaHeader"
+                    pastaOverskrift.setAttributeNode(pastaHeader);
+                    pastaOverskrift.innerHTML = 'Pasta'
+                    pasta.appendChild(pastaOverskrift);
+
+                    overskriftH.appendChild(pizza)
+                    var pizzaOverskrift = document.createElement("h1");
+                    let pizzaHeader = document.createAttribute("id")
+                    pizzaHeader.value = "pizzaHeader"
+                    pizzaOverskrift.setAttributeNode(pizzaHeader);
+                    pizzaOverskrift.innerHTML = 'Pizza'
+                    pizza.appendChild(pizzaOverskrift);
+
+                }
                 mad.forEach(hvilket => {
-                    if (filter == "alle" || filter == hvilket.kategori) {
-                        let template =
-
-                            `<div id="show">
-            <h4>${hvilket.navn} - ${hvilket.beskrivelse} - ${hvilket.pris},-</h4>
-                    </div>`;
-                        retter.insertAdjacentHTML("beforeend", template);
-                        retter.lastElementChild.addEventListener("click", open);
+                    function open() {
+                        document.querySelector("#indhold").innerHTML =
 
 
-                        function open() {
-                            document.querySelector("#indhold").innerHTML =
-
-
-                                `<h2>${hvilket.navn}</h2>
+                            `<h2>${hvilket.navn}</h2>
                             <article>
 
                             <div id="billede">
@@ -246,12 +325,65 @@
   </div>
                     </article>`;
 
-                            document.querySelector("#popup").style.display = "block";
+                        document.querySelector("#popup").style.display = "block";
+                    }
+                    let template =
+
+                        `<div id="show">
+                       <h2 id="navn">${hvilket.navn}</h2> <h4> - ${hvilket.beskrivelse} - ${hvilket.pris},-</h4>
+                </div>`;
+
+
+                    if (filter == "alle") {
+                        if (hvilket.kategori === "forret") {
+                            forret.insertAdjacentHTML("beforeend", template);
+                            forret.lastElementChild.addEventListener("click", open);
+                        } else if (hvilket.kategori === "hovedret") {
+                            if (hvilket.id <= 21 && hvilket.id >= 8) {
+                                let pizzaH = document.querySelector("#pizzaHeader")
+                                pizzaH.insertAdjacentHTML("beforeend", template);
+                                pizzaH.lastElementChild.addEventListener("click", open);
+                            } else if (hvilket.id <= 30 && hvilket.id >= 22) {
+                                let pastaH = document.querySelector("#pastaHeader")
+                                pastaH.insertAdjacentHTML("beforeend", template);
+                                pastaH.lastElementChild.addEventListener("click", open);
+                            }
+                        } else if (hvilket.kategori === "dessert") {
+                            dessert.insertAdjacentHTML("beforeend", template);
+                            dessert.lastElementChild.addEventListener("click", open);
                         }
 
+
+
+                    } else {
+                        if (filter === "hovedret") {
+                            if (hvilket.kategori === "hovedret") {
+                                if (hvilket.id <= 21 && hvilket.id >= 8) {
+                                    let pizzaH = document.querySelector("#pizzaHeader")
+                                    pizzaH.insertAdjacentHTML("beforeend", template);
+                                    pizzaH.lastElementChild.addEventListener("click", open);
+                                } else if (hvilket.id <= 30 && hvilket.id >= 22) {
+                                    let pastaH = document.querySelector("#pastaHeader")
+                                    pastaH.insertAdjacentHTML("beforeend", template);
+                                    pastaH.lastElementChild.addEventListener("click", open);
+                                }
+                            }
+                        } else if (filter === "forret") {
+                            if (hvilket.kategori === "forret") {
+                                forret.insertAdjacentHTML("beforeend", template);
+                                forret.lastElementChild.addEventListener("click", open)
+                            }
+
+                        } else if (filter === "dessert") {
+                            if (hvilket.kategori === "dessert") {
+                                dessert.insertAdjacentHTML("beforeend", template);
+                                dessert.lastElementChild.addEventListener("click", open);
+                            }
+                        }
                     }
 
-                });
+
+                })
             }
 
             document.querySelector("#luk button").addEventListener("click", () => {
@@ -282,7 +414,6 @@
             getRetter();
 
         }
-
     </script>
 </body>
 
