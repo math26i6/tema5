@@ -1,0 +1,282 @@
+[
+    {
+        "navn": "Bruschetta",
+        "kategori": "forret",
+        "beskrivelse": "Ristet brød med frisk tomat, hvidløg, basilikum og jomfruolie",
+        "pris": 30,
+        "id": 1,
+        "billede": "bruchetta"
+  },
+    {
+        "navn": "Vitello Tonnato",
+        "kategori": "forret",
+        "beskrivelse": "Tyndeskiver af kalvekød med tunfisksause",
+        "pris": 42,
+        "id": 2,
+        "billede": "vitello"
+  },
+    {
+        "navn": "Carpaccio Tartufato",
+        "kategori": "forret",
+        "beskrivelse": "Tynde skiver af oksekød, rucola, grana, citron, jomfruolie og sorte trøfler",
+        "pris": 38,
+        "id": 3,
+        "billede": "carpacctio"
+  },
+    {
+        "navn": "Insalata di Petto D' anatra",
+        "kategori": "forret",
+        "beskrivelse": "Tynde skiver andebryst med frisk sort trøffel og purløg",
+        "pris": 45,
+        "id": 4,
+        "billede": "ande"
+  },
+    {
+        "navn": "Prosciutto E Melone",
+        "kategori": "forret",
+        "beskrivelse": "Parmaskinke og melon",
+        "pris": 30,
+        "id": 5,
+        "billede": "melon"
+  },
+    {
+        "navn": "Tagliere Di Affettati",
+        "kategori": "forret",
+        "beskrivelse": "Udvalg af italienske pølser og oliven",
+        "pris": 32,
+        "id": 6,
+        "billede": "polse"
+  },
+    {
+        "navn": "Verdure Alla Griglia",
+        "kategori": "forret",
+        "beskrivelse": "Marinerede grillede grøntsage",
+        "pris": 36,
+        "id": 7,
+        "billede": "groentsager"
+  },
+    {
+        "navn": "Margherita",
+        "kategori": "hovedret",
+        "beskrivelse": "Tomat, mozzarella, frisk basilikum",
+        "pris": 61,
+        "id": 8,
+        "billede": "maga"
+  },
+    {
+        "navn": "Prosciutto Cotto",
+        "kategori": "hovedret",
+        "beskrivelse": "Tomat, mozzarella, skinke",
+        "pris": 68,
+        "id": 9,
+        "billede": "skinke"
+  },
+    {
+        "navn": "4 Stagioni",
+        "kategori": "hovedret",
+        "beskrivelse": "Tomat, mozzarella, skinke, champignon, oliven, artiskokker",
+        "pris": 75,
+        "id": 10,
+        "billede": "4ars"
+  },
+    {
+        "navn": "4 Formaggi",
+        "kategori": "hovedret",
+        "beskrivelse": "Tomat, mozzarella, scarmorza, gorgonzola, parmesan",
+        "pris": 79,
+        "id": 11,
+        "billede": "4oste"
+  },
+    {
+        "navn": "Pepperoni",
+        "kategori": "hovedret",
+        "beskrivelse": "Tomat, mozzarella, pepperoni",
+        "pris": 65,
+        "id": 12,
+        "billede": "pepe"
+  },
+    {
+        "navn": "Filetto",
+        "kategori": "hovedret",
+        "beskrivelse": "Tomat, mozzarella, oksekød i skiver, paprika, rødløg, pesto",
+        "pris": 78,
+        "id": 13,
+        "billede": "ileto"
+  },
+    {
+        "navn": "Veggie",
+        "kategori": "hovedret",
+        "beskrivelse": "Tomat, mozzarella, champignon, artiskokker, paprika, løg, oliven",
+        "pris": 69,
+        "id": 14,
+        "billede": "veggie"
+  },
+    {
+        "navn": "Bresaola",
+        "kategori": "hovedret",
+        "beskrivelse": "Tomat, mozzarella, bresaola (lufttørret oksekød), rucola, parmesan",
+        "pris": 95,
+        "id": 15,
+        "billede": "bre"
+  },
+    {
+        "navn": "Diavola",
+        "kategori": "hovedret",
+        "beskrivelse": "Tomat, mozzarella, venticina, paprika, løg, parmesan, chili",
+        "pris": 85,
+        "id": 16,
+        "billede": "diavola"
+  },
+    {
+        "navn": "Valetellina",
+        "kategori": "hovedret",
+        "beskrivelse": "Tomat, mozzarella, røget skinke, rucola, parmesan",
+        "pris": 88,
+        "id": 17,
+        "billede": "valen"
+  },
+    {
+        "navn": "Trentina",
+        "kategori": "hovedret",
+        "beskrivelse": "Tomat, mozzarella, italiensk frisk pølse, gorgonzola",
+        "pris": 91,
+        "id": 18,
+        "billede": "tretina"
+  },
+    {
+        "navn": "Piccante",
+        "kategori": "hovedret",
+        "beskrivelse": "Tomat, mozzarella, ventricina, artiskokker, rucola",
+        "pris": 88,
+        "id": 19,
+        "billede": "piccante"
+  },
+    {
+        "navn": "Parma",
+        "kategori": "hovedret",
+        "beskrivelse": "Tomat, mozzarella, parmaskinke, cherry tomater, rucola",
+        "pris": 88,
+        "id": 20,
+        "billede": "parma"
+  },
+    {
+        "navn": "Tirolese",
+        "kategori": "hovedret",
+        "beskrivelse": "Tomat, mozzarella, røget skinke, røget mozzarella, rucola",
+        "pris": 90,
+        "id": 21,
+        "billede": "tirolese"
+  },
+    {
+        "navn": "Spaghetti Alla Bolognese",
+        "kategori": "hovedret",
+        "beskrivelse": "Kødsause",
+        "pris": 65,
+        "id": 22,
+        "billede": "bolo"
+  },
+    {
+        "navn": "Spaghetti Alla Amatriciana",
+        "kategori": "hovedret",
+        "beskrivelse": "Italiensk bacon, tomatsause, pecorino ost",
+        "pris": 71,
+        "id": 23,
+        "billede": "ama"
+  },
+    {
+        "navn": "Spaghetti Alla Pecatora",
+        "kategori": "hovedret",
+        "beskrivelse": "Jomfru hummer, kæmperejer, muslinger, rejer, blæksprutter, tomatsause",
+        "pris": 81,
+        "id": 24,
+        "billede": "rejer"
+  },
+    {
+        "navn": "Spaghetti Alla Carbonara",
+        "kategori": "hovedret",
+        "beskrivelse": "Italiensk bacon, æg, pecorino, ost",
+        "pris": 71,
+        "id": 25,
+        "billede": "carbo"
+  },
+    {
+        "navn": "Penne Al Pomodoro",
+        "kategori": "hovedret",
+        "beskrivelse": "Tomatsause",
+        "pris": 63,
+        "id": 26,
+        "billede": "penne"
+  },
+    {
+        "navn": "Penne Al Salmone",
+        "kategori": "hovedret",
+        "beskrivelse": "Frisk laks, tomatsause, fløde, estragon",
+        "pris": 71,
+        "id": 27,
+        "billede": "salmon"
+  },
+    {
+        "navn": "Fettuccine Parma E Champignon",
+        "kategori": "hovedret",
+        "beskrivelse": "Parmaskinke, champignon, tomatsause, fløde",
+        "pris": 75,
+        "id": 28,
+        "billede": "tun"
+  },
+    {
+        "navn": "Ravioli",
+        "kategori": "hovedret",
+        "beskrivelse": "Fyldt med ricotta ost, spinat, tomatsause, pesto",
+        "pris": 85,
+        "id": 29,
+        "billede": "ravi"
+  },
+    {
+        "navn": "Lasagna",
+        "kategori": "hovedret",
+        "beskrivelse": "Lasagna med kødsause",
+        "pris": 65,
+        "id": 30,
+        "billede": "lagsan"
+  },
+    {
+        "navn": "Formaggio Misto",
+        "kategori": "dessert",
+        "beskrivelse": "Udvalg af oste med tilhørende garniture",
+        "pris": 50,
+        "id": 31,
+        "billede": "ost"
+  },
+    {
+        "navn": "Tiramisu",
+        "kategori": "dessert",
+        "beskrivelse": "Tiramisu",
+        "pris": 45,
+        "id": 32,
+        "billede": "tiramus"
+  },
+    {
+        "navn": "Pasticcini",
+        "kategori": "dessert",
+        "beskrivelse": "Småkager (petit four)",
+        "pris": 56,
+        "id": 33,
+        "billede": "kager"
+  },
+    {
+        "navn": "Torta Di Frutta",
+        "kategori": "dessert",
+        "beskrivelse": "Frugt tærte",
+        "pris": 45,
+        "id": 34,
+        "billede": "frugtkage"
+  },
+    {
+        "navn": "Panna Cotta",
+        "kategori": "dessert",
+        "beskrivelse": "Med jordbær coulisr",
+        "pris": 52,
+        "id": 35,
+        "billede": "panna"
+  }
+]
