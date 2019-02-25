@@ -4,30 +4,63 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bistro Babushka</title>
+    <title>La Delicato</title>
     <link rel="stylesheet" href="">
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="style">
+    <link href="https://fonts.googleapis.com/css?family=Marcellus+SC" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
 
     <style>
         body {
             margin: auto;
             text-align: center;
+            background-image: url(pics/Logo%20forkert.png);
+            background-position: center;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: auto;
         }
 
+        #farve {
+            color: black;
+        }
 
+        .background {
+            background-image: url(pics/Logo%20forkert.png);
+            background-position: center;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.04;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: auto;
+
+        }
 
         #menu {
+            opacity: ;
             display: grid;
             grid-template-columns: 1fr;
-            text-align: left;
-            max-width: 1200px;
             margin-left: auto;
             border: none;
             background-color: rgba(0, 0, 0, 0);
+            overflow-y: hidden;
+        }
+
+        #menu div {
+            z-index: 80;
+            overflow-y: hidden;
         }
 
         section {
+            max-width: 1200px;
+            margin: auto;
             text-align: center;
             border: 2px solid white;
             background-color: rgba(201, 201, 201, 0.38);
@@ -40,11 +73,13 @@
         }
 
         #popup {
+            top: 2vw;
             display: none;
             margin: auto;
             width: 100vw;
             height: 200vh;
             position: fixed;
+            z-index: 99;
 
         }
 
@@ -56,18 +91,6 @@
             height: 10vw;
             left: 15vw;
             color: black;
-        }
-
-
-        #se {
-            font-size: 1.5rem;
-            font-family: sans-serif;
-            font-style: oblique;
-        }
-
-        #se:hover {
-            color: black;
-            cursor: pointer;
         }
 
         #indhold {
@@ -102,6 +125,11 @@
             font-family: Marcellus SC;
             font-size: 2rem;
             text-align: left
+        }
+
+        #hovedretter {
+            max-width: 1200px;
+            margin: auto;
         }
 
         article {
@@ -160,18 +188,32 @@
 
         }
 
-        #luk button {
+        button:hover {
+            background-color: rgb(0, 0, 0);
+            transition: .8s ease;
+        }
+
+
+        #luk {
+            position: absolute;
             font-size: 1.4rem;
-            width: 10vw;
+            width: 8vw;
+            top: 1vw;
+            left: 21vw;
+            height: 0vw;
             text-align: center;
             background-color: rgb(144, 144, 144);
             color: white;
             font-family: oswald;
-            border: 1px solid white;
             border-bottom: none;
             margin-right: 0.2rem;
             padding: 0.5rem;
             cursor: pointer;
+
+        }
+
+        #luk:hover {
+            text-decoration: underline;
 
         }
 
@@ -194,6 +236,8 @@
 
         }
 
+
+
         #splash {
             max-width: none;
             position: relative;
@@ -203,6 +247,8 @@
             background-repeat: no-repeat;
             background-size: cover;
             opacity: 0.8;
+            background-attachment: fixed;
+            background-position: center;
         }
 
         #splash h1 {
@@ -216,43 +262,99 @@
         }
 
         #pastaHeader {
-
-            margin-right: 10rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
-
             font-family: Marcellus SC;
             font-size: 2rem;
-            text-align: left
+            text-align: center;
+        }
+
+        #pastaHeader>h1 {
+            color: purple;
+        }
+
+        #pastaHeader #show:nth-child(even) {
+            border-right: 1px solid black;
         }
 
         #pizzaHeader {
-            font-family: Marcellus SC;
-            font-size: 2rem;
-            text-align: left;
-            margin-top: 5rem;
-            margin-right: 10rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
+            font-family: Marcellus SC;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        #pizzaHeader #show:nth-child(even) {
+            border-right: 1px solid black;
+        }
+
+        #pizzaHeader #show h2 {
+            z-index: 99;
         }
 
 
         #forretter div {
-            margin-left: 10rem;
+            opacity: 1;
+            text-align: justify;
+            margin: auto;
             width: auto;
             display: grid;
-            grid-template-columns: 1fr 3fr;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        #forretter h1 {
+            text-align: center
+        }
+
+        #forretter h2 {
+            z-index: 98;
+            text-align: right;
+            padding: 1rem;
+            border-right: 1px solid black;
         }
 
         #desserter div {
-            margin-left: 10rem;
+            opacity: 1;
+            z-index: 97;
+            text-align: justify;
+            margin: auto;
             width: auto;
             display: grid;
-            grid-template-columns: 1fr 3fr;
+            grid-template-columns: 1fr 1fr;
         }
+
+        #desserter h1 {
+            text-align: center
+        }
+
+        #desserter h2 {
+            z-index: 98;
+            text-align: right;
+            padding: 1rem;
+            border-right: 1px solid black;
+        }
+
+
+
+        #hovedretter h1 {
+            text-align: center
+        }
+
+        #hovedretter {
+            z-index: 98;
+        }
+
 
         #show>#navn {
             color: red;
+            z-index: 96;
+        }
+
+        #show>#navn:hover {
+            cursor: pointer;
+            color: black;
+            transition: .8s ease;
         }
 
         #show>#tekst {
@@ -263,12 +365,17 @@
             font-family: Marcellus SC;
         }
 
+        h2 #navn {
+            border-right: 1px solid black;
+        }
     </style>
 </head>
 
 <body>
     <div id="popup">
-        <div id="luk"><button>Close</button></div>
+        <div id="luk">
+            <p>Tilbage</p>
+        </div>
         <div id="indhold"></div>
 
     </div>
@@ -290,7 +397,9 @@
 
     <h1 id="h1_menu">Alle Retter
     </h1>
+    <div class="background"></div>
     <section id="menu">
+
         <div id="forret">
         </div>
         <div id="hovedretter">
@@ -299,6 +408,7 @@
         </div>
         <div id="dessert"></div>
     </section>
+
     <script>
         document.addEventListener("DOMContentLoaded", start);
         let retter = [];
@@ -339,6 +449,12 @@
                     hovedretId.value = "hovedretter"
                     hovedret.setAttributeNode(hovedretId);
 
+
+
+                    //                  var overskriftH = document.createElement("h1");
+                    // overskriftH.innerHTML = 'Hovedretter'
+                    // hovedret.appendChild(overskriftH);
+
                     let forretId = document.createAttribute("id")
                     forretId.value = "forretter"
                     forret.setAttributeNode(forretId);
@@ -363,10 +479,10 @@
 
                     overskriftH.appendChild(pasta)
                     var pastaOverskrift = document.createElement("h1");
-                    let pastaHeader = document.createAttribute("id")
+                    let pastaHeader = document.createAttribute("id");
                     pastaHeader.value = "pastaHeader"
                     pastaOverskrift.setAttributeNode(pastaHeader);
-                    pastaOverskrift.innerHTML = 'Pasta'
+                    pastaOverskrift.innerHTML = 'Pasta Fresca Hjemmelavet pasta'
                     pasta.appendChild(pastaOverskrift);
 
                     overskriftH.appendChild(pizza)
@@ -383,7 +499,8 @@
                         document.querySelector("#indhold").innerHTML =
 
 
-                            `<h2>${hvilket.navn}</h2>
+                            `
+<h2>${hvilket.navn}</h2>
                             <article>
 
                             <div id="billede">
@@ -457,7 +574,7 @@
                 })
             }
 
-            document.querySelector("#luk button").addEventListener("click", () => {
+            document.querySelector("#luk").addEventListener("click", () => {
                 document.querySelector("#popup").style.display = "none";
             });
 
@@ -485,7 +602,6 @@
             getRetter();
 
         }
-
     </script>
 </body>
 

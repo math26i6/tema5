@@ -2,7 +2,7 @@
     {
         "navn": "Bruschetta",
         "kategori": "forret",
-        "beskrivelse": "Ristet brød med frisk tomat, hvidløg, basilikum og jomfruolie",
+        "beskrivelse": "Ristet brød med frisk tomat, <br> hvidløg, basilikum og jomfruolie",
         "pris": 30,
         "id": 1,
         "billede": "bruchetta"
@@ -18,7 +18,7 @@
     {
         "navn": "Carpaccio Tartufato",
         "kategori": "forret",
-        "beskrivelse": "Tynde skiver af oksekød, rucola, grana, citron, jomfruolie og sorte trøfler",
+        "beskrivelse": "Tynde skiver af oksekød, rucola, grana, citron, <br> jomfruolie og sorte trøfler",
         "pris": 38,
         "id": 3,
         "billede": "carpacctio"
@@ -26,7 +26,7 @@
     {
         "navn": "Insalata di Petto D' anatra",
         "kategori": "forret",
-        "beskrivelse": "Tynde skiver andebryst med frisk sort trøffel og purløg",
+        "beskrivelse": "Tynde skiver andebryst med frisk sort trøffel <br> og purløg",
         "pris": 45,
         "id": 4,
         "billede": "ande"
@@ -230,14 +230,6 @@
         "pris": 85,
         "id": 29,
         "billede": "ravi"
-  },
-    {
-        "navn": "Lasagna",
-        "kategori": "hovedret",
-        "beskrivelse": "Lasagna med kødsause",
-        "pris": 65,
-        "id": 30,
-        "billede": "lagsan"
   },
     {
         "navn": "Formaggio Misto",
