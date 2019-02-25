@@ -106,6 +106,7 @@
         h1 {
             font-family: Marcellus SC;
             font-size: 2rem;
+            display: block;
         }
 
         #forretter h1 {
@@ -263,34 +264,84 @@
 
         #pastaHeader {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: [col1-start]1fr 1fr;
+            grid-template-rows: [row1-start]1fr [row2-start]1fr [row2-end];
             font-family: Marcellus SC;
             font-size: 2rem;
             text-align: center;
-        }
-
-        #pastaHeader>h1 {
-            color: purple;
         }
 
         #pastaHeader #show:nth-child(even) {
             border-right: 1px solid black;
+            border-bottom: 1px solid black;
+
         }
+
+        #pastaHeader #show:nth-child(odd) {
+            border-bottom: 1px solid black;
+
+        }
+
+
+        #pastaHeader #show:nth-child(8) {
+            border-bottom: 0px solid black;
+
+        }
+
+
+        #pastaHeader #show:last-child {
+            border-bottom: 0px solid black;
+
+        }
+
+        #pastaHeader>h1 {
+
+            grid-column: 1/3;
+            grid-row: 1/2;
+        }
+
+
+
+        #pizzaHeader>h1 {
+            margin-top: 4rem;
+            display: block;
+            grid-column: 1/3;
+            grid-row: 1/2;
+        }
+
+
 
         #pizzaHeader {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: [col1-start]1fr 1fr;
+            grid-template-rows: [row1-start]1fr [row2-start]1fr [row2-end];
             font-family: Marcellus SC;
             font-size: 2rem;
             text-align: center;
         }
 
+
         #pizzaHeader #show:nth-child(even) {
             border-right: 1px solid black;
+            border-bottom: 1px solid black;
+
         }
 
-        #pizzaHeader #show h2 {
-            z-index: 99;
+        #pizzaHeader #show:nth-child(odd) {
+            border-bottom: 1px solid black;
+
+        }
+
+
+        #pizzaHeader #show:nth-child(14) {
+            border-bottom: 0px solid black;
+
+        }
+
+
+        #pizzaHeader #show:last-child {
+            border-bottom: 0px solid black;
+
         }
 
 
@@ -382,10 +433,10 @@
     <div id="splash">
         <nav>
             <button id="hjem">Hjem</button>
-            <button class="filter" data-kategori="alle">Alle Retter</button>
-            <button class="filter" data-kategori="forret">Forretter</button>
-            <button class="filter" data-kategori="hovedret">Hovedretter</button>
-            <button class="filter" data-kategori="dessert">Desserter</button>
+            <button id="alle_retter" class="filter" data-kategori="alle">Alle Retter</button>
+            <button id="for" class="filter" data-kategori="forret">Forretter</button>
+            <button id="knap" class="filter" data-kategori="hovedret">Hovedretter</button>
+            <button id="ders" class="filter" data-kategori="dessert">Desserter</button>
             <button>Kontakt</button>
             <button>Book</button>
 
@@ -432,6 +483,22 @@
 
 
             function showMenu() {
+
+                document.querySelector("#knap").addEventListener("click", () => {
+                    document.querySelector("#h1_menu").style.display = "none"
+                });
+
+                document.querySelector("#alle_retter").addEventListener("click", () => {
+                    document.querySelector("#h1_menu").style.display = "block"
+                });
+
+                document.querySelector("#for").addEventListener("click", () => {
+                    document.querySelector("#h1_menu").style.display = "block"
+                });
+
+                document.querySelector("#ders").addEventListener("click", () => {
+                    document.querySelector("#h1_menu").style.display = "block"
+                });
                 retter.innerHTML = "";
                 var forret = document.createElement("div")
                 var hovedret = document.createElement("div")
@@ -481,7 +548,7 @@
                     var pastaOverskrift = document.createElement("h1");
                     let pastaHeader = document.createAttribute("id");
                     pastaHeader.value = "pastaHeader"
-                    pastaOverskrift.setAttributeNode(pastaHeader);
+                    pasta.setAttributeNode(pastaHeader);
                     pastaOverskrift.innerHTML = 'Pasta Fresca Hjemmelavet pasta'
                     pasta.appendChild(pastaOverskrift);
 
@@ -489,8 +556,8 @@
                     var pizzaOverskrift = document.createElement("h1");
                     let pizzaHeader = document.createAttribute("id")
                     pizzaHeader.value = "pizzaHeader"
-                    pizzaOverskrift.setAttributeNode(pizzaHeader);
-                    pizzaOverskrift.innerHTML = 'Pizza'
+                    pizza.setAttributeNode(pizzaHeader);
+                    pizzaOverskrift.textContent = "Pizza"
                     pizza.appendChild(pizzaOverskrift);
 
                 }
