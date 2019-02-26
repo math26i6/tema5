@@ -39,7 +39,7 @@
         img {
             width: 25vw;
             height: 25vw;
-            z-index: 5;
+            z-index: -1;
             margin: 0.7rem;
             cursor: pointer;
             visibility: inherit;
@@ -64,6 +64,7 @@
             box-shadow: rgb(153, 153, 153) 0px 0px 0px 0px;
 
         }
+
 
         #popup {
             display: none;
@@ -164,6 +165,9 @@
             position: absolute;
             bottom: 0;
             right: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr;
 
         }
 
@@ -205,15 +209,18 @@
         }
 
         footer {
+            position: absolute;
+            left: 0;
+            bottom: 1;
             color: white;
-            width: auto;
+            width: 100%;
+            width: 100%;
             height: 3rem;
             background-color: black;
         }
 
         footer p {
             text-align: center;
-            padding-top: 0.8rem;
         }
 
         #om {
@@ -225,6 +232,174 @@
 
 
 
+        }
+
+        .text-block {
+            position: absolute;
+            bottom: 0;
+            left: 15vw;
+            color: rgb(175, 0, 0);
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .text-block p {
+            font-family: Marcellus SC;
+            font-size: 2.5rem;
+        }
+
+        @media screen and (max-width:1024px) {
+
+            footer {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                color: white;
+                width: 100%;
+                width: 100%;
+                height: 3rem;
+                background-color: black;
+            }
+
+            .item-b img {
+                position: absolute;
+                left: 36.2vw;
+                top: 47.5vw;
+
+            }
+
+            .item-c img {
+                position: absolute;
+                right: 3vw;
+                top: 47.5vw;
+
+            }
+
+
+
+        }
+
+        @media screen and (max-width:712px) {
+
+
+            footer {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                color: white;
+                width: 100%;
+                width: 100%;
+                height: 3rem;
+                background-color: black;
+            }
+
+            .item-a {
+                position: relative;
+            }
+
+            .text-block {
+                position: absolute;
+                bottom: 10px;
+                left: -1vw;
+                color: rgb(175, 0, 0);
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .text-block p {
+                font-family: Marcellus SC;
+                font-size: 1.5rem;
+            }
+
+            .item-b img {
+                position: absolute;
+                left: 31vw;
+                top: 47.5vw;
+
+            }
+
+            .item-c img {
+                position: absolute;
+                right: 3vw;
+                top: 47.5vw;
+
+            }
+
+            h1 {
+                font-family: Marcellus SC;
+                font-size: 1rem;
+            }
+
+            button {
+                width: 100%;
+                background-color: black;
+            }
+
+
+            nav {
+                text-align: center;
+                position: absolute;
+                top: 17vw;
+                width: 30vw;
+                left: 23.5vw;
+                display: none;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: 1fr 1fr 1fr;
+                z-index: 99;
+
+            }
+
+
+            #burger {
+                display: inline-block;
+                position: fixed;
+                cursor: pointer;
+                right: 6vw;
+                top: 19vw;
+                z-index: 99;
+            }
+
+            .burgeropen {
+                width: 10vw;
+                right: 6vw;
+                top: 30vw;
+                display: inline-block;
+                position: fixed;
+                cursor: pointer;
+                z-index: 99;
+
+            }
+
+            .bar1,
+            .bar2,
+            .bar3 {
+                width: 35px;
+                height: 5px;
+                background-color: black;
+                margin: 6px 0;
+                transition: 0.4s;
+                border-radius: 15px;
+            }
+
+            .change .bar1 {
+                right: 6vw;
+                top: 30vw;
+                background-color: black;
+                transform: rotate(-45deg) translate(-9px, 6px);
+                transform: rotate(-45deg) translate(-9px, 6px);
+            }
+
+            .change .bar2 {
+                opacity: 0;
+            }
+
+            .change .bar3 {
+                right: 6vw;
+                top: 30vw;
+                background-color: black;
+                transform: rotate(45deg) translate(-8px, -8px);
+                transform: rotate(45deg) translate(-8px, -8px);
+            }
         }
     </style>
 
@@ -249,11 +424,20 @@
         </nav>
 
     </div>
+    <div id="burger">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+    </div>
     <section>
         <div class="container">
             <div class="item-a">
                 <h1>Autentisk Italiensk Mad</h1>
                 <img src="pics/pizza.jpg" alt="pizza">
+                <div class="text-block">
+                    <p>Vores menu</p>
+                </div>
+
                 <!--
 <p>Lorem ipsum dolor sit amet, amet sodales, quis libero praesent nulla diam vulputate. Ipsum quis vivamus est, curabitur quam class integer etiam. Elit venenatis sit neque platea, duis id lacus fringilla lacus quisque integer, quis cras purus non, etiam quam ligula vestibulum. Arcu platea mus sit sit accumsan, pellentesque feugiat diam quam, nullam amet ultrices purus, wisi viverra mauris leo gravida. Urna eget sit. Sed mi ut magna ac scelerisque, tortor augue turpis, lorem velit scelerisque wisi quisque, est ridiculus a, maecenas convallis aute pellentesque senectus.
 
@@ -290,9 +474,38 @@
 
         function startPage() {
             console.log("forside");
+
+            document.querySelector("#burger").addEventListener("click", menuClick);
             document.querySelector("#menu_button").addEventListener("click", () => {
                 location.href = "la_delicato_menu.html?";
             });
+
+            document.querySelector(".item-a").addEventListener("click", () => {
+                location.href = "la_delicato_menu.html?";
+            });
+        }
+
+
+
+        function menuClick() {
+            console.log("open");
+
+            document.querySelector("nav").style.display = "grid";
+            document.querySelector("#burger").removeEventListener("click", menuClick);
+            document.querySelector("#burger").classList.add("change");
+            document.querySelector("#burger").classList.add("burgeropen");
+            document.querySelector("#burger").addEventListener("click", menuLuk);
+
+        }
+
+        function menuLuk() {
+            console.log("closed");
+            document.querySelector("nav").style.display = "none";
+            document.querySelector("#burger").removeEventListener("click", menuLuk);
+            document.querySelector("#burger").classList.remove("change");
+            document.querySelector("#burger").classList.remove("burgeropen");
+            startPage();
+
         }
     </script>
 </body>
